@@ -1,0 +1,28 @@
+table td,
+table th {
+  border: 1px solid silver;
+}
+
+.headerSortDown:after,
+.headerSortUp:after {
+  content: ' ';
+  position: relative;
+  left: 2px;
+  border: 8px solid transparent;
+  margin-left: 0.25rem;
+}
+
+.headerSortDown:after {
+  top: 20px;
+  border-top-color: silver;
+}
+
+.headerSortUp:after {
+  bottom: 20px;
+  border-bottom-color: silver;
+}
+
+.headerSortDown,
+.headerSortUp {
+  padding-right: 10px;
+}

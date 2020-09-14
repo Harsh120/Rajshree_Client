@@ -15,15 +15,20 @@ toast.configure();
 export const loadAllUser = () => (dispatch) => {
     // User Loading
     dispatch({ type: USER_LOADING });
-
     axios.get('/users')
-        .then(res => dispatch({
-            type: USER_LOADED,
-            payload: res.data.data
-        }))
-        .catch(err => {
-            dispatch(returnErrors(err.res.data, err.res.status));
-        });
+    .then(res => {
+        if(res.data.msg) {
+            dispatch(returnErrors(res.data.msg, res.data.sucess));
+            toast.error(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
+        }
+        else {
+            dispatch({
+                type: USER_LOADED,
+                payload: res.data.data
+            })
+            toast.success('All Customer Loaded', {position: toast.POSITION.BOTTOM_LEFT}) 
+        }
+    });
 }
 
 export const addNewUser = newUser => (dispatch) => {
