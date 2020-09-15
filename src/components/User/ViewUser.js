@@ -68,7 +68,13 @@ export class ViewUser extends Component {
             <p className="card-text">{m.comment}</p>
 
             <Button tag={RRNavLink} exact to={{pathname: '/mortage',
-                                            state: {id: m.id}}} color="info">View Details</Button>
+                                            state: {
+                                                id: m.id, 
+                                                name: this.props.mortage.name,
+                                                father_name: this.props.mortage.father_name,
+                                                place: this.props.mortage.place.name,
+                                                phone_number: this.props.mortage.phone_number
+                                                }}} color="info">View Details</Button>
                 </div>
             </div>
             )}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Container } from 'reactstrap';
+import { Table, Container, Row, Col } from 'reactstrap';
 import UpdateMortage from '../Mortage/UpdateMortage';
 import { loadPayments } from '../../actions/paymentActions';
 import { connect } from 'react-redux';
@@ -24,6 +24,27 @@ class MortageDetails extends Component {
         return (
             <Container>
                 <br/>
+                <div className="card text-center">
+                <div className="card-header">
+                    Customer And Mortage Details
+                </div>
+                <Row>
+                    <Col style={{borderRight: "1px solid grey"}}>
+                        <div className="card-body">
+                            <h5 className="card-title">{this.props.location.state.name}</h5> {/* Has*/}
+                            <p className="card-text">{this.props.location.state.father_name} || {this.props.location.state.place} || {this.props.location.state.phone_number}</p>             
+                        </div>
+                    </Col>
+                    <Col>
+                        <div className="card-body">
+                            <h5 className="card-title">{this.props.payments.items}</h5> {/* Has*/}
+                            <p className="card-text">{this.props.payments.weight} || {this.props.payments.amount} || {this.props.payments.mortage_at} || {this.props.payments.comment}</p>             
+                        </div>
+                    </Col>
+                </Row>
+            </div>
+                <br/>
+
                  <UpdateMortage id={this.props.location.state.id}/>
 
                 <Table striped>
@@ -37,10 +58,10 @@ class MortageDetails extends Component {
                         <th>Payment Detail</th>
                         </tr>
                     </thead>
-                    { this.props?.payments?.payments?.map((payment)=> (
+                    { this.props?.payments?.payments?.map((payment, index)=> (
                         <tbody key={payment.id}>
                             <tr>
-                            <th scope="row">{payment.id}</th>
+                            <th scope="row">{index+1}</th>
                             <td>{payment.paid_by}</td>
                             <td>{payment.amount}</td>
                             <td>{payment.mode_of_payment}</td>

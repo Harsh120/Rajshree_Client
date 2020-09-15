@@ -58,6 +58,22 @@ export const addNewMortage = newMortage => (dispatch) => {
     });
 }
 
+export const changeStatus = id => (dispatch) => {
+    axios.put('/mortage/changeStatus/'+id)
+        .then(res=> {
+            if(res.data.success===false) {
+                toast.error(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
+            }
+            else {
+                // dispatch({
+                //     type: CHANGE_STATUS,
+                //     payload: id
+                // })
+                toast.success(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
+            }
+        })
+}
+
 export const deleteMortage = id => (dispatch) => {
     axios.delete('/mortage/'+id)
         .then(res=> {

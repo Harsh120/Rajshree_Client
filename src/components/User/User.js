@@ -85,10 +85,10 @@ class User extends Component {
                     </tr>
                 </thead> 
                 
-                { SortedUsers.map((users)=> (
+                { SortedUsers.map((users, index)=> (
                 <tbody key={users.id}>
                     <tr>
-                        <th scope="row">{users.id}</th>
+                        <th scope="row">{index+1}</th>
                         <td>{users.name}</td>
                         <td>{users.father_name}</td>
                         <td>{users.place.name}</td>

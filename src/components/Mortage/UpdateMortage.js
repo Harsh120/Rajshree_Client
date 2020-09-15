@@ -12,7 +12,7 @@ import {
     Col
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { deleteMortage } from '../../actions/mortageActions';
+import { deleteMortage, changeStatus } from '../../actions/mortageActions';
 import { addNewPayment } from '../../actions/paymentActions';
 import PropTypes from 'prop-types';
 
@@ -28,7 +28,8 @@ class UpdateMortage extends Component {
 
     static propTypes = {
         deleteMortage: PropTypes.func.isRequired,
-        addNewPayment: PropTypes.func.isRequired
+        addNewPayment: PropTypes.func.isRequired,
+        changeStatus: PropTypes.func.isRequired
     }
 
     toggle = () => {
@@ -55,6 +56,10 @@ class UpdateMortage extends Component {
         this.props.addNewPayment(newPayment);
 
         this.toggle();
+    }
+
+    onChangeStatus = id => {
+        this.props.changeStatus(id);
     }
 
     onDeleteClick = id => {
@@ -146,6 +151,9 @@ class UpdateMortage extends Component {
                                  </Button>
                                  <Button color="danger" onClick={this.onDeleteClick.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
                                         Delete
+                                 </Button>
+                                 <Button color="info" onClick={this.onChangeStatus.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
+                                        Change
                                  </Button>                      
                              </FormGroup>
                          </Form>
@@ -156,4 +164,4 @@ class UpdateMortage extends Component {
     }
 }
 
-export default connect(null, { deleteMortage, addNewPayment })(UpdateMortage);
+export default connect(null, { deleteMortage, addNewPayment, changeStatus })(UpdateMortage);
