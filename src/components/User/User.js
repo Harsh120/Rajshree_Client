@@ -142,16 +142,22 @@ class User extends Component {
 
             <div className="pagination-wrapper">
           
-            <Pagination aria-label="Page navigation example">
+            <Pagination>
                 
                 <PaginationItem disabled={currentPage <= 0}>
-                
+                    <PaginationLink 
+                        onClick={e => this.handleClick(e, 0)}
+                        first
+                        href="#"
+                    />
+                </PaginationItem>
+
+                <PaginationItem disabled={currentPage <= 0}>  
                 <PaginationLink
                     onClick={e => this.handleClick(e, currentPage - 1)}
                     previous
                     href="#"
-                />
-                
+                />       
                 </PaginationItem>
 
                  {[...Array((endPage + 1) - startPage).keys()].map((page, i) => 
@@ -162,22 +168,20 @@ class User extends Component {
                 </PaginationItem>
                 )}
 
-                {/* {[...Array(pagesCount)].map((page, i) => 
-                <PaginationItem active={i === currentPage} key={i}>
-                    <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
-                    {i + 1}
-                    </PaginationLink>
-                </PaginationItem>
-                )} */}
-
                 <PaginationItem disabled={currentPage >= pagesCount - 1}>
-                
                 <PaginationLink
                     onClick={e => this.handleClick(e, currentPage + 1)}
                     next
                     href="#"
-                />
-                
+                />   
+                </PaginationItem>
+
+                <PaginationItem disabled={currentPage >= pagesCount - 1}>
+                    <PaginationLink 
+                        onClick={e => this.handleClick(e, pagesCount - 1)}
+                        last
+                        href="#"
+                    />
                 </PaginationItem>
                 
             </Pagination>
