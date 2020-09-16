@@ -32,7 +32,8 @@ class User extends Component {
 
     updateSearch= event => {
         this.setState({
-            search: event.target.value.substr(0,20)
+            search: event.target.value.substr(0,20),
+            currentPage: 0
         });
     }
 
