@@ -12,8 +12,8 @@ import {
     Col
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { deleteMortage, changeStatus } from '../../actions/mortageActions';
-import { addNewPayment } from '../../actions/paymentActions';
+import { deleteMortage } from '../../actions/mortageActions';
+import { addNewPayment, changeStatus } from '../../actions/paymentActions';
 import PropTypes from 'prop-types';
 
 class UpdateMortage extends Component {

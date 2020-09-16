@@ -4,7 +4,8 @@ import {
     PAYMENT_LOADED, 
     PAYMENT_LOADING_ERROR,
     CREATE_NEW_PAYMENT_SUCCESS,
-    CREATE_NEW_PAYMENT_FAIL
+    CREATE_NEW_PAYMENT_FAIL,
+    CHANGE_STATUS_OF_MORTAGE
  } from './types';
 import { returnErrors } from './errorActions';
 import { toast } from 'react-toastify';
@@ -54,4 +55,20 @@ export const addNewPayment = newPayment => (dispatch) => {
             toast.success('New Payment Created', {position: toast.POSITION.BOTTOM_LEFT}) 
         }
     });
+}
+
+export const changeStatus = id => (dispatch) => {
+    axios.put('/mortage/changeStatus/'+id)
+        .then(res=> {
+            if(res.data.success===false) {
+                toast.error(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
+            }
+            else {
+                dispatch({
+                    type: CHANGE_STATUS_OF_MORTAGE,
+                    payload: res.data.newStatus
+                })
+                toast.success(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
+            }
+        })
 }

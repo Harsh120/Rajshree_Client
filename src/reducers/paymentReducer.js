@@ -3,7 +3,8 @@ import {
     PAYMENT_LOADED,
     PAYMENT_LOADING_ERROR,
     CREATE_NEW_PAYMENT_SUCCESS,
-    CREATE_NEW_PAYMENT_FAIL
+    CREATE_NEW_PAYMENT_FAIL,
+    CHANGE_STATUS_OF_MORTAGE
 } from '../actions/types';
 
 const initialState = {
@@ -34,8 +35,18 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 payments: {
-                    ...state.mortage,
+                    ...state.payments,
                     payments: [action.payload, ...state.payments.payments || {}]
+                }
+            }
+        case CHANGE_STATUS_OF_MORTAGE:
+            return {
+                ...state,
+                payments: {
+                    ...state.payments,
+                    status: {
+                        name: action.payload
+                    }
                 }
             }
         default:

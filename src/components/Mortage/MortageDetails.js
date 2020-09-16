@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Container, Row, Col } from 'reactstrap';
+import { Table, Container, Row, Col, Badge } from 'reactstrap';
 import UpdateMortage from '../Mortage/UpdateMortage';
 import { loadPayments } from '../../actions/paymentActions';
 import { connect } from 'react-redux';
@@ -20,13 +20,25 @@ class MortageDetails extends Component {
         this.props.loadPayments(this.props.location.state.id);
     }
 
+    currencyFormat = number => {
+        return new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR'}).format(number);
+    }
+
     render() {
+        const totalAmount = this.props?.payments?.payments?.reduce((amount_sum, pay) => amount_sum + parseFloat(pay.amount), 0);
+        const Formatted_totalAmount = this.currencyFormat(totalAmount);
         return (
             <Container>
                 <br/>
                 <div className="card text-center">
                 <div className="card-header">
                     Customer And Mortage Details
+                    { (this.props?.payments?.status?.name === 'Cleared') 
+                        ? <Badge color="success" pill style={{fontSize: 15, float: 'right'}}>Cleared</Badge>
+                        : <Badge color="warning" pill style={{fontSize: 15, float: 'right'}}>Not Cleared</Badge>
+                    }
                 </div>
                 <Row>
                     <Col style={{borderRight: "1px solid grey"}}>
@@ -62,7 +74,7 @@ class MortageDetails extends Component {
                         <tbody key={payment.id}>
                             <tr>
                             <th scope="row">{index+1}</th>
-                            <td>{payment.paid_by}</td>
+                            <td>{payment.paid_by? payment.paid_by : 'N/A'}</td>
                             <td>{payment.amount}</td>
                             <td>{payment.mode_of_payment}</td>
                             <td>{Moment(payment.payment_date).format('DD/MM/YYYY')}</td>
@@ -70,6 +82,11 @@ class MortageDetails extends Component {
                             </tr>
                         </tbody>
                     ))}
+                    <tr>
+                        <th></th>
+                        <th>Total Paid</th>
+                        <th>{Formatted_totalAmount}</th>
+                    </tr>
                 </Table>
                 </Container>
         )

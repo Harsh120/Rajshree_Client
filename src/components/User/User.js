@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Table, Input} from 'reactstrap';
+import { Container, Table, Input, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 import { loadAllUser } from '../../actions/userActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import Loading from '../Loading/Loading';
 import './User.css';
+import './Pagination.css';
 
 class User extends Component {
     constructor() {
@@ -13,9 +14,21 @@ class User extends Component {
         this.state = {
             search: '',
             key: 'id',
-            sort_asc: false
+            sort_asc: false,
+            currentPage: 0
         };
+        this.pageSize = 5;
     }
+
+    handleClick(e, index) {
+    
+        e.preventDefault();
+    
+        this.setState({
+          currentPage: index
+        });
+        
+      }
 
     updateSearch= event => {
         this.setState({
@@ -41,6 +54,7 @@ class User extends Component {
     }
 
     render() {
+
         let filteredUsers = this.props.user.filter(
             (user) => {
                 return user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
@@ -49,6 +63,29 @@ class User extends Component {
             }
         );
         
+        const { currentPage } = this.state;
+        let total_item = Object.keys(filteredUsers).length;
+        let pagesCount = Math.ceil(total_item / this.pageSize);
+
+        var startPage, endPage;
+        if (pagesCount <= 10) {
+            // less than 10 total pages so show all
+            startPage = 1;
+            endPage = pagesCount;
+        } else {
+            // more than 10 total pages so calculate start and end pages
+            if (currentPage <= 6) {
+                startPage = 1;
+                endPage = 10;
+            } else if (currentPage + 4 >= pagesCount) {
+                startPage = pagesCount - 9;
+                endPage = pagesCount;
+            } else {
+                startPage = currentPage - 5;
+                endPage = currentPage + 4;
+            }
+        }
+
         let SortedUsers = filteredUsers.sort((a,b) => {
             if(this.state.key === 'place') 
             {
@@ -85,7 +122,11 @@ class User extends Component {
                     </tr>
                 </thead> 
                 
-                { SortedUsers.map((users, index)=> (
+                { SortedUsers.slice(
+                        currentPage * this.pageSize,
+                        (currentPage + 1) * this.pageSize
+                        )
+                    .map((users, index)=> (
                 <tbody key={users.id}>
                     <tr>
                         <th scope="row">{index+1}</th>
@@ -98,6 +139,51 @@ class User extends Component {
                 }  
                 </Table>
                 }
+
+            <div className="pagination-wrapper">
+          
+            <Pagination aria-label="Page navigation example">
+                
+                <PaginationItem disabled={currentPage <= 0}>
+                
+                <PaginationLink
+                    onClick={e => this.handleClick(e, currentPage - 1)}
+                    previous
+                    href="#"
+                />
+                
+                </PaginationItem>
+
+                 {[...Array((endPage + 1) - startPage).keys()].map((page, i) => 
+                <PaginationItem active={i === currentPage} key={i}>
+                    <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
+                    {i +  startPage}
+                    </PaginationLink>
+                </PaginationItem>
+                )}
+
+                {/* {[...Array(pagesCount)].map((page, i) => 
+                <PaginationItem active={i === currentPage} key={i}>
+                    <PaginationLink onClick={e => this.handleClick(e, i)} href="#">
+                    {i + 1}
+                    </PaginationLink>
+                </PaginationItem>
+                )} */}
+
+                <PaginationItem disabled={currentPage >= pagesCount - 1}>
+                
+                <PaginationLink
+                    onClick={e => this.handleClick(e, currentPage + 1)}
+                    next
+                    href="#"
+                />
+                
+                </PaginationItem>
+                
+            </Pagination>
+          
+          </div>
+
            </Container>
         );
     }
