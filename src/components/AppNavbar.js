@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import {
   Collapse,
   Navbar,
@@ -7,7 +9,8 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  Container,
+  Button
 } from 'reactstrap';
 import { NavLink as RRNavLink} from 'react-router-dom';
 
@@ -26,6 +29,9 @@ class AppNavbar extends Component {
         return (
             <div>
             <Navbar color="dark" dark expand="sm">
+            <Button color="info" onClick={this.props.toggleSidebar}>
+                        <FontAwesomeIcon icon={faAlignLeft} />
+                    </Button>
                 <Container>
                     <NavbarBrand href='/'>Rajshree</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />

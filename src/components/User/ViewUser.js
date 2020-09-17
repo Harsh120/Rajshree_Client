@@ -49,7 +49,7 @@ export class ViewUser extends Component {
                 <br/>
                 <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Add New Mortage</Button>
                 <Collapse isOpen={this.state.isOpen}>
-                    <AddMortage/>
+                    <AddMortage toggle={this.toggle}/>
                 </Collapse>
                 <br/><br/>
 

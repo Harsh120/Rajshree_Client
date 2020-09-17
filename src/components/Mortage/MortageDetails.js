@@ -43,14 +43,14 @@ class MortageDetails extends Component {
                 <Row>
                     <Col style={{borderRight: "1px solid grey"}}>
                         <div className="card-body">
-                            <h5 className="card-title">{this.props.location.state.name}</h5> {/* Has*/}
-                            <p className="card-text">{this.props.location.state.father_name} || {this.props.location.state.place} || {this.props.location.state.phone_number}</p>             
+                            <h5 className="card-title">{this.props.location.state.name}</h5>
+                            <p className="card-text">{this.props.location.state.father_name} || {this.props.location.state.place} || {this.props.location.state.phone_number}</p>           
                         </div>
                     </Col>
                     <Col>
                         <div className="card-body">
-                            <h5 className="card-title">{this.props.payments.items}</h5> {/* Has*/}
-                            <p className="card-text">{this.props.payments.weight} || {this.props.payments.amount} || {this.props.payments.mortage_at} || {this.props.payments.comment}</p>             
+                            <h5 className="card-title">{this.props.payments.items}</h5>
+                            <p className="card-text">{this.props.payments.weight} || {this.props.payments.amount} || {Moment(this.props.payments.mortage_at).format('DD/MM/YYYY')} || {this.props.payments.comment}</p>             
                         </div>
                     </Col>
                 </Row>

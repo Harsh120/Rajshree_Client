@@ -143,18 +143,28 @@ class UpdateMortage extends Component {
                                         />
                                     </Col>
                                 </Row>
-                                <Button color="dark" onClick={this.toggle} style={{marginTop: '2rem', marginRight: '1rem', float: 'right'}}>
-                                    Cancel
-                                </Button>
-                                <Button color="success" onClick={this.onUpdateClick} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
-                                        Update
-                                 </Button>
-                                 <Button color="danger" onClick={this.onDeleteClick.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
-                                        Delete
-                                 </Button>
-                                 <Button color="info" onClick={this.onChangeStatus.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
-                                        Change
-                                 </Button>                      
+                                <Row>
+                                    <Col style={{borderRight: "1px solid grey"}}>
+                                    <div style={{float: "left"}}>
+                                    <Button color="danger" onClick={this.onDeleteClick.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
+                                            Delete
+                                    </Button>
+                                    <Button color="info" onClick={this.onChangeStatus.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
+                                            Change
+                                    </Button>
+                                    </div>
+                                    </Col> 
+                                    <Col>
+                                    <div style={{float: "right"}}>
+                                    <Button color="dark" onClick={this.toggle} style={{marginTop: '2rem', marginRight: '1rem', float: 'right'}}>
+                                        Cancel
+                                    </Button>
+                                    <Button color="success" onClick={this.onUpdateClick} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
+                                            Update
+                                    </Button>
+                                    </div>
+                                    </Col>
+                                 </Row>         
                              </FormGroup>
                          </Form>
                      </ModalBody>

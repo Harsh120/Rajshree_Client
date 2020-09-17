@@ -45,8 +45,10 @@ class AddMortage extends Component {
             comment: this.state.comment,
             mortage_at: this.state.mortage_at
         })
-
+        
         this.props.addNewMortage(newMortage);
+
+        this.props.toggle();
     }
 
     render()

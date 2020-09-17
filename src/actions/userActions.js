@@ -26,7 +26,6 @@ export const loadAllUser = () => (dispatch) => {
                 type: USER_LOADED,
                 payload: res.data.data
             })
-            toast.success('All Customer Loaded', {position: toast.POSITION.BOTTOM_LEFT}) 
         }
     });
 }

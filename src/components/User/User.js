@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { Container, Table, Input, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 import { loadAllUser } from '../../actions/userActions';
 import { connect } from 'react-redux';
@@ -112,7 +114,7 @@ class User extends Component {
                {this.props.isLoading
                 ? <Loading/>
                 :
-               <Table striped bordered hover>
+               <Table striped bordered hover responsive>
                 <thead>
                     <tr>
                     <th>#</th>
@@ -134,7 +136,11 @@ class User extends Component {
                         <td>{users.name}</td>
                         <td>{users.father_name}</td>
                         <td>{users.place.name}</td>
-                        <td><RRNavLink exact to={'/view/'+users.id}>View</RRNavLink></td>
+                        <td>
+                            <RRNavLink exact to={'/view/'+users.id}><FontAwesomeIcon icon={faEye} style={{color: 'green'}} /></RRNavLink>
+                            <FontAwesomeIcon icon={faEdit} style={{color: '2f7d96', marginLeft: "0.5rem"}}/>
+                            <FontAwesomeIcon icon={faTrash} style={{color: 'red', marginLeft: "0.5rem"}}/>
+                        </td>
                     </tr>
                 </tbody> ))
                 }  
