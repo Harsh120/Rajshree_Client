@@ -1,4 +1,4 @@
-import { USER_LOADED, USER_LOADING} from '../actions/types';
+import { USER_LOADED, USER_LOADING, EDIT_USER_SUCCESS, EDIT_USER_FAIL } from '../actions/types';
 
 const initalState = {
     isLoading: false,
@@ -19,6 +19,14 @@ export default function(state = initalState, action) {
                 isLoading: false,
                 user: action.payload
             };
+        case EDIT_USER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                user: state.user.map((user) => user.id === action.id ? action.payload : user) 
+                //user: [action.payload, ...state.user]
+            };
+        case EDIT_USER_FAIL:
         default:
             return state;
     }

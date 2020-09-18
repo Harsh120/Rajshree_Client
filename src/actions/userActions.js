@@ -3,7 +3,9 @@ import {
     USER_LOADED, 
     USER_LOADING,
     CREATE_NEW_CUSTOMER_SUCCESS,
-    CREATE_NEW_CUSTOMER_FAIL
+    CREATE_NEW_CUSTOMER_FAIL,
+    EDIT_USER_SUCCESS,
+    EDIT_USER_FAIL
 } from './types';
 import { returnErrors } from './errorActions';
 
@@ -53,4 +55,30 @@ export const addNewUser = newUser => (dispatch) => {
             toast.success('New Customer Created', {position: toast.POSITION.BOTTOM_LEFT}) 
         }
     });
+}
+
+export const editUser = (id, updatedUser) => (dispatch) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    axios.put('/user/edit/'+id, updatedUser, config)
+        .then(res => {
+            if(res.data.msg) {
+                dispatch({
+                    type: EDIT_USER_FAIL
+                })
+                toast.error(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
+            }
+            else {
+                dispatch({
+                    type: EDIT_USER_SUCCESS,
+                    payload: res.data,
+                    id: res.data.id
+                })
+                toast.success('Customer Edited', {position: toast.POSITION.BOTTOM_LEFT}) 
+            }
+        })
 }

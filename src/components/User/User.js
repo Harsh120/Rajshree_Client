@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import EditUser from './EditUser';
 import { Container, Table, Input, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 import { loadAllUser } from '../../actions/userActions';
 import { connect } from 'react-redux';
@@ -121,7 +122,7 @@ class User extends Component {
                     <th className={this.state.key==="name" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'name')}>First Name</th>
                     <th className={this.state.key==="father_name" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'father_name')}>Father's Name</th>
                     <th className={this.state.key==="place" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'place')}>Place</th>
-                    <th>View Profile</th>
+                    <th colSpan="3">Actions</th>
                     </tr>
                 </thead> 
                 
@@ -137,9 +138,19 @@ class User extends Component {
                         <td>{users.father_name}</td>
                         <td>{users.place.name}</td>
                         <td>
-                            <RRNavLink exact to={'/view/'+users.id}><FontAwesomeIcon icon={faEye} style={{color: 'green'}} /></RRNavLink>
-                            <FontAwesomeIcon icon={faEdit} style={{color: '2f7d96', marginLeft: "0.5rem"}}/>
-                            <FontAwesomeIcon icon={faTrash} style={{color: 'red', marginLeft: "0.5rem"}}/>
+                            <RRNavLink exact to={'/view/'+users.id}><FontAwesomeIcon icon={faEye} style={{color: 'green'}} /> View</RRNavLink>
+                        </td>
+                        <td>
+                            <EditUser 
+                                id={users.id}
+                                name={users.name}
+                                father_name={users.father_name}
+                                place={users.place.name}
+                                phone_number={users.phone_number}
+                            />
+                        </td>
+                        <td>
+                            <FontAwesomeIcon icon={faTrash} style={{color: 'red', marginLeft: "0.5rem"}}/> Delete
                         </td>
                     </tr>
                 </tbody> ))

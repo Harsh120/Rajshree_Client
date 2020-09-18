@@ -39,23 +39,22 @@
 .search-box:focus {
   width: 100%;
   outline: none;
-  border: 4px solid #08a1b6;
+  border: 3px solid #61dafb;
 }
 
 ul.options {
   display: block;
   list-style: none;
-  width: 30rem;
+  width: 25rem;
   transition: width 0.3s;
-  margin: auto;
-  position: relative;
+
 }
 
 ul.options li {
   display: block;
   background: white;
-  margin: 10px auto;
-  padding: 10px;
+  margin: 5px auto;
+  padding: 5px;
   font-size: 1.2rem;
   width: 100%;
   border-radius: 2px;
@@ -73,7 +72,8 @@ ul.options li.option-active {
   color: #00b4cc;
 }
 .no-options {
-  color: white;
+  padding: 2px;
+  color: black;
 }
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";

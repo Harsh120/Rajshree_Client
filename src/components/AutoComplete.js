@@ -10,7 +10,7 @@ export class Autocomplete extends Component {
     activeOption: 0,
     filteredOptions: [],
     showOptions: false,
-    userInput: ''
+    userInput: this.props?.place
   };
 
   onChange = (e) => {
