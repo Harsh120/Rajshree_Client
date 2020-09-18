@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import EditUser from './EditUser';
+import Confirmaton from './../Confirmation/Confirmation';
 import { Container, Table, Input, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
 import { loadAllUser } from '../../actions/userActions';
 import { connect } from 'react-redux';
@@ -119,9 +120,9 @@ class User extends Component {
                 <thead>
                     <tr>
                     <th>#</th>
-                    <th className={this.state.key==="name" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'name')}>First Name</th>
-                    <th className={this.state.key==="father_name" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'father_name')}>Father's Name</th>
-                    <th className={this.state.key==="place" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'place')}>Place</th>
+                    <th className={this.state.key==="name" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'name')} style={{cursor: "pointer"}}>First Name</th>
+                    <th className={this.state.key==="father_name" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'father_name')} style={{cursor: "pointer"}}>Father's Name</th>
+                    <th className={this.state.key==="place" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'place')} style={{cursor: "pointer"}}>Place</th>
                     <th colSpan="3">Actions</th>
                     </tr>
                 </thead> 
@@ -150,7 +151,9 @@ class User extends Component {
                             />
                         </td>
                         <td>
-                            <FontAwesomeIcon icon={faTrash} style={{color: 'red', marginLeft: "0.5rem"}}/> Delete
+                            <Confirmaton
+                                message = "Do you really want to delete these records?"
+                            />
                         </td>
                     </tr>
                 </tbody> ))

@@ -52,7 +52,8 @@ class UpdateMortage extends Component {
         const updatedUser = JSON.stringify({
             name: this.state.name,
             father_name: this.state.father_name,
-            place: this.state.place
+            place: this.state.place,
+            phone_number: this.state.phone_number
         })
 
         this.props.editUser(this.props.id, updatedUser);

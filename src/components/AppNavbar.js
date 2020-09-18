@@ -28,7 +28,7 @@ class AppNavbar extends Component {
     render() {
         return (
             <div>
-            <Navbar color="dark" dark expand="sm">
+            <Navbar color="dark" dark expand="sm" style={{borderRadius: '15px'}}>
             <Button color="info" onClick={this.props.toggleSidebar}>
                         <FontAwesomeIcon icon={faAlignLeft} />
                     </Button>
