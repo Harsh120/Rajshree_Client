@@ -26,7 +26,7 @@ class AddMortage extends Component {
 
     static propTypes = {
         addNewMortage: PropTypes.func.isRequired,
-        mortage: PropTypes.array.isRequired
+        mortage: PropTypes.object.isRequired
     }
 
     onChange = e => {

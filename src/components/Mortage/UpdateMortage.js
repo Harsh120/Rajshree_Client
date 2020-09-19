@@ -60,10 +60,14 @@ class UpdateMortage extends Component {
 
     onChangeStatus = id => {
         this.props.changeStatus(id);
+
+        this.toggle();
     }
 
     onDeleteClick = id => {
         this.props.deleteMortage(id);
+
+        this.toggle();
     }
 
     render() {

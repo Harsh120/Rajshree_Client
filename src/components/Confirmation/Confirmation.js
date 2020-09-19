@@ -10,15 +10,15 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import {  } from "./../../actions/userActions";
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 
-class UpdateMortage extends Component {
+class Confirmation extends Component {
     state = {
         modal: false,
     };
 
     static propTypes = {
-        editUser: PropTypes.func.isRequired
+        
     }
 
     toggle = () => {
@@ -84,4 +84,4 @@ class UpdateMortage extends Component {
     }
 }
 
-export default connect(null, {  })(UpdateMortage);
+export default connect(null, {  })(Confirmation);

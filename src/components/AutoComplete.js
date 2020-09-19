@@ -10,7 +10,7 @@ export class Autocomplete extends Component {
     activeOption: 0,
     filteredOptions: [],
     showOptions: false,
-    userInput: this.props?.place
+    userInput: this.props.place
   };
 
   onChange = (e) => {
@@ -106,7 +106,7 @@ export class Autocomplete extends Component {
             placeholder="Enter Place"
             onChange={onChange}
             onKeyDown={onKeyDown}
-            value={userInput}
+            value={userInput || ''}
           />
         {optionList}
       </React.Fragment>

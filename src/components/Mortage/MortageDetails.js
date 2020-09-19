@@ -13,7 +13,7 @@ class MortageDetails extends Component {
 
     static propTypes = {
         loadPayments: PropTypes.func.isRequired,
-        payments: PropTypes.array.isRequired
+        payments: PropTypes.object.isRequired
     }
 
     componentDidMount() {
@@ -82,11 +82,13 @@ class MortageDetails extends Component {
                             </tr>
                         </tbody>
                     ))}
+                    <tbody>
                     <tr>
                         <th></th>
                         <th>Total Paid</th>
                         <th>{Formatted_totalAmount}</th>
                     </tr>
+                    </tbody>
                 </Table>
                 </Container>
         )

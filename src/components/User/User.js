@@ -143,7 +143,7 @@ class User extends Component {
                         </td>
                         <td>
                             <EditUser 
-                                id={users.id}
+                                id={users.id} 
                                 name={users.name}
                                 father_name={users.father_name}
                                 place={users.place.name}

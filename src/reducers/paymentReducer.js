@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     isLoading: false,
-    payments: []
+    payments: {}
 };
 
 export default function(state = initialState, action) {

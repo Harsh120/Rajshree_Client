@@ -21,7 +21,7 @@ export class ViewUser extends Component {
 
     static propTypes = {
         loadMortages: PropTypes.func.isRequired,
-        mortage: PropTypes.array.isRequired,
+        mortage: PropTypes.object.isRequired,
         isLoading: PropTypes.bool.isRequired
     }
 

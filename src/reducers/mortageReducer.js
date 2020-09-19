@@ -9,7 +9,7 @@ import {
 
 const initalState = {
     isLoading: false,
-    mortage: []
+    mortage: {}
 };
 
 export default function(state = initalState, action) {

@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 import { editUser } from "./../../actions/userActions";
 import PropTypes from 'prop-types';
 
-class UpdateMortage extends Component {
+class EditUser extends Component {
     state = {
         modal: false,
         name: this.props.name,
@@ -65,6 +65,13 @@ class UpdateMortage extends Component {
         axios.get('/places').then(res => this.setState({
             places: res.data
         }))
+    }
+    
+    componentWillUnmount() {
+        // fix Warning: Can't perform a React state update on an unmounted component
+        this.setState = (state,callback)=>{
+            return;
+        };
     }
 
     render() {
@@ -149,4 +156,4 @@ class UpdateMortage extends Component {
     }
 }
 
-export default connect(null, { editUser })(UpdateMortage);
+export default connect(null, { editUser })(EditUser);
