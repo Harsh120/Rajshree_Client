@@ -152,6 +152,7 @@ class User extends Component {
                         </td>
                         <td>
                             <Confirmaton
+                                id = {users.id}
                                 message = "Do you really want to delete these records?"
                             />
                         </td>

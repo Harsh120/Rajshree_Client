@@ -9,8 +9,8 @@ import {
     Col
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import {  } from "./../../actions/userActions";
-//import PropTypes from 'prop-types';
+import { deleteUser } from "./../../actions/userActions";
+import PropTypes from 'prop-types';
 
 class Confirmation extends Component {
     state = {
@@ -18,7 +18,7 @@ class Confirmation extends Component {
     };
 
     static propTypes = {
-        
+        deleteUser: PropTypes.func.isRequired
     }
 
     toggle = () => {
@@ -27,15 +27,8 @@ class Confirmation extends Component {
         });
     };
 
-    onDeleteclick = () => {
-
-        // const updatedUser = JSON.stringify({
-        //     name: this.state.name,
-        //     father_name: this.state.father_name,
-        //     place: this.state.place
-        // })
-
-        //this.props.editUser(this.props.id, updatedUser);
+    onDeleteClick = id => {
+        this.props.deleteUser(id);
 
         this.toggle();
     }
@@ -70,7 +63,7 @@ class Confirmation extends Component {
                                 <Button color="dark" onClick={this.toggle} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
                                         Cancel
                                 </Button>
-                                <Button color="danger" onClick={this.onDeleteClick} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
+                                <Button color="danger" onClick={this.onDeleteClick.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
                                         Delete
                                 </Button>
                             </div>
@@ -84,4 +77,4 @@ class Confirmation extends Component {
     }
 }
 
-export default connect(null, {  })(Confirmation);
+export default connect(null, { deleteUser })(Confirmation);

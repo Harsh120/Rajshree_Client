@@ -1,4 +1,11 @@
-import { USER_LOADED, USER_LOADING, EDIT_USER_SUCCESS, EDIT_USER_FAIL } from '../actions/types';
+import { 
+    USER_LOADED, 
+    USER_LOADING, 
+    EDIT_USER_SUCCESS, 
+    EDIT_USER_FAIL,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_FAIL
+} from '../actions/types';
 
 const initalState = {
     isLoading: false,
@@ -23,9 +30,15 @@ export default function(state = initalState, action) {
             return {
                 ...state,
                 isLoading: false,
-                user: state.user.map((user) => user.id === action.id ? action.payload : user) 
-                //user: [action.payload, ...state.user]
+                user: state.user.map((user) => user.id === action.id ? action.payload : user)
             };
+        case DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                user: state.user.filter(u => u.id !== action.payload)
+            }
+        case DELETE_USER_FAIL:
         case EDIT_USER_FAIL:
         default:
             return state;

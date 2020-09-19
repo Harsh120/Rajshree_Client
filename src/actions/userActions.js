@@ -5,7 +5,9 @@ import {
     CREATE_NEW_CUSTOMER_SUCCESS,
     CREATE_NEW_CUSTOMER_FAIL,
     EDIT_USER_SUCCESS,
-    EDIT_USER_FAIL
+    EDIT_USER_FAIL,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_FAIL
 } from './types';
 import { returnErrors } from './errorActions';
 
@@ -79,6 +81,25 @@ export const editUser = (id, updatedUser) => (dispatch) => {
                     id: res.data.id
                 })
                 toast.success('Customer Edited', {position: toast.POSITION.BOTTOM_LEFT}) 
+            }
+        })
+}
+
+export const deleteUser = id => (dispatch) => {
+    axios.delete('/user/'+id)
+        .then(res=> {
+            if(res.data.success===false) {
+                dispatch({
+                    type: DELETE_USER_FAIL
+                });
+                toast.error(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
+            }
+            else {
+                dispatch({
+                    type: DELETE_USER_SUCCESS,
+                    payload: id
+                })
+                toast.success(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
             }
         })
 }
