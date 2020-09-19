@@ -34,10 +34,10 @@ class MortageDetails extends Component {
                 <br/>
                 <div className="card text-center">
                 <div className="card-header">
-                    Customer And Mortage Details
+                    <div className="badge-centered-text">Customer And Mortage Details</div>
                     { (this.props?.payments?.status?.name === 'Cleared') 
-                        ? <Badge color="success" pill style={{fontSize: 15, float: 'right'}}>Cleared</Badge>
-                        : <Badge color="warning" pill style={{fontSize: 15, float: 'right'}}>Not Cleared</Badge>
+                        ? <Badge color="success" pill className="badge-align-right" style={{fontSize: 15}}>Cleared</Badge>
+                        : <Badge color="warning" pill className="badge-align-right" style={{fontSize: 15}}>Not Cleared</Badge>
                     }
                 </div>
                 <Row>
@@ -59,7 +59,7 @@ class MortageDetails extends Component {
 
                  <UpdateMortage id={this.props.location.state.id}/>
 
-                <Table striped>
+                <Table striped bordered hover responsive>
                     <thead>
                         <tr>
                         <th>#</th>

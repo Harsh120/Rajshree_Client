@@ -125,7 +125,7 @@ class UpdateMortage extends Component {
                                             />
                                     </Col>
                                     <Col>
-                                    <Label for="amount" style={{marginTop:'1rem'}}>Amount</Label>
+                                    <Label for="amount" style={{marginTop:'1rem'}} className="required">Amount</Label>
                                         <Input
                                             type="number"
                                             name="amount"

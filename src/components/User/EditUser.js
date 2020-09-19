@@ -93,7 +93,7 @@ class EditUser extends Component {
                              <FormGroup>
                                 <Row>
                                     <Col>
-                                    <Label for="name">Name</Label>
+                                    <Label for="name" className="required">Name</Label>
                                         <Input
                                             type="text"
                                             name="name"
@@ -105,7 +105,7 @@ class EditUser extends Component {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Label for="father_name" style={{marginTop:'1rem'}}>Father</Label>
+                                        <Label for="father_name" style={{marginTop:'1rem'}} className="required">Father</Label>
                                         <Input
                                             type="text"
                                             name="father_name"
@@ -127,7 +127,7 @@ class EditUser extends Component {
                                 </Row>
                                 <Row>
                                     <Col>
-                                    <Label for="place" style={{marginTop:'1rem'}}>Place</Label>
+                                    <Label for="place" style={{marginTop:'1rem'}} className="required">Place</Label>
                                         <AutoComplete
                                             options={this.state.places} 
                                             parentCallback = {this.callbackFunction}

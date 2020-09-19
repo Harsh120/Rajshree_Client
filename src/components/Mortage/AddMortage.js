@@ -60,7 +60,7 @@ class AddMortage extends Component {
                 <FormGroup>
                     <Row>
                         <Col>
-                            <Label for="items" style={{marginTop:'1rem'}}>Items</Label>
+                            <Label for="items" style={{marginTop:'1rem'}} className="required">Items</Label>
                             <Input
                             type="text"
                             name="items"
@@ -72,7 +72,7 @@ class AddMortage extends Component {
                     </Row>
                     <Row>
                         <Col>
-                            <Label for="amount" style={{marginTop:'1rem'}}>Amount</Label>
+                            <Label for="amount" style={{marginTop:'1rem'}} className="required">Amount</Label>
                             <Input
                             type="number"
                             name="amount"
@@ -83,7 +83,7 @@ class AddMortage extends Component {
                             />
                         </Col>
                         <Col>
-                            <Label for="weight" style={{marginTop:'1rem'}}>Weight</Label>
+                            <Label for="weight" style={{marginTop:'1rem'}} className="required">Weight</Label>
                                 <Input
                                 type="text"
                                 name="weight"

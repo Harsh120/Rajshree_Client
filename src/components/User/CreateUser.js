@@ -56,7 +56,7 @@ class CreateUser extends Component {
                 <Row>
                     <Col>
                         <FormGroup>
-                            <Label for="name">Name</Label>
+                            <Label for="name" className="required">Name</Label>
                                 <Input
                                     type="text"
                                     name="name"
@@ -68,7 +68,7 @@ class CreateUser extends Component {
                     </Col>
                     <Col>
                         <FormGroup>
-                            <Label for="father_name">Father's Name</Label>
+                            <Label for="father_name" className="required">Father's Name</Label>
                                 <Input
                                     type="text"
                                     name="father_name"
@@ -84,7 +84,7 @@ class CreateUser extends Component {
                 <Row>
                     <Col>
                     <FormGroup>
-                    <Label for="place">Place</Label>
+                    <Label for="place" className="required">Place</Label>
                         <AutoComplete
                             options={this.state.places} 
                             parentCallback = {this.callbackFunction}
