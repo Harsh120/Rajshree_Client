@@ -18,7 +18,7 @@ toast.configure();
 export const loadMortages = id => (dispatch) => {
     // User Loading
     dispatch({ type: MORTAGE_LOADING });
-    axios.get('/user/mortages/'+id)
+    axios.get('/customer/mortages/'+id)
         .then(res => {
             if(!res.data.msg) {
                 dispatch({
@@ -41,7 +41,7 @@ export const addNewMortage = newMortage => (dispatch) => {
             'Content-Type': 'application/json'
         }
     }
-
+    
     axios.post('/mortage', newMortage, config)
     .then(res => {
         if(res.data.msg) {

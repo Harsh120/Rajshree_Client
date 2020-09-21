@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { loadMortages } from '../../actions/mortageActions';
 import { Container, Button, Collapse, Badge, Row, Col } from 'reactstrap';
 import Loading from '../Loading/Loading';
-import AddMortage from './../Mortage/AddMortage';
+import AddMortage from '../Mortage/AddMortage';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import Moment from 'moment';
 
-export class ViewUser extends Component {
+export class ViewCustomer extends Component {
     state = {
         isOpen: false
     }
@@ -133,4 +133,4 @@ const mapStateToProps = (state) => ({
     isLoading: state.mortage.isLoading
 })
 
-export default connect(mapStateToProps, { loadMortages } )(ViewUser);
+export default connect(mapStateToProps, { loadMortages } )(ViewCustomer);

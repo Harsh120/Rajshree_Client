@@ -9,7 +9,7 @@ import {
     Col
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import { deleteUser } from "./../../actions/userActions";
+import { deleteCustomer } from "../../actions/customerActions";
 import PropTypes from 'prop-types';
 
 class Confirmation extends Component {
@@ -18,7 +18,7 @@ class Confirmation extends Component {
     };
 
     static propTypes = {
-        deleteUser: PropTypes.func.isRequired
+        deleteCustomer: PropTypes.func.isRequired
     }
 
     toggle = () => {
@@ -28,7 +28,7 @@ class Confirmation extends Component {
     };
 
     onDeleteClick = id => {
-        this.props.deleteUser(id);
+        this.props.deleteCustomer(id);
 
         this.toggle();
     }
@@ -77,4 +77,4 @@ class Confirmation extends Component {
     }
 }
 
-export default connect(null, { deleteUser })(Confirmation);
+export default connect(null, { deleteCustomer })(Confirmation);

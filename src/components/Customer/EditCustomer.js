@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import AutoComplete from './../AutoComplete';
+import AutoComplete from '../AutoComplete';
 import {
     Button,
     Modal,
@@ -16,10 +16,10 @@ import {
 } from 'reactstrap';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { editUser } from "./../../actions/userActions";
+import { editCustomer } from "./../../actions/customerActions";
 import PropTypes from 'prop-types';
 
-class EditUser extends Component {
+class EditCustomer extends Component {
     state = {
         modal: false,
         name: this.props.name,
@@ -30,7 +30,7 @@ class EditUser extends Component {
     };
 
     static propTypes = {
-        editUser: PropTypes.func.isRequired
+        editCustomer: PropTypes.func.isRequired
     }
 
     callbackFunction = (childData) => {
@@ -49,14 +49,14 @@ class EditUser extends Component {
 
     onUpdateClick = () => {
 
-        const updatedUser = JSON.stringify({
+        const updatedCustomer = JSON.stringify({
             name: this.state.name,
             father_name: this.state.father_name,
             place: this.state.place,
             phone_number: this.state.phone_number
         })
 
-        this.props.editUser(this.props.id, updatedUser);
+        this.props.editCustomer(this.props.id, updatedCustomer);
 
         this.toggle();
     }
@@ -87,7 +87,7 @@ class EditUser extends Component {
                  isOpen={this.state.modal}
                  toggle={this.toggle}
                  >
-                     <ModalHeader toggle={this.toggle}>Edit User Details</ModalHeader>
+                     <ModalHeader toggle={this.toggle}>Edit Customer Details</ModalHeader>
                      <ModalBody>
                          <Form>
                              <FormGroup>
@@ -156,4 +156,4 @@ class EditUser extends Component {
     }
 }
 
-export default connect(null, { editUser })(EditUser);
+export default connect(null, { editCustomer })(EditCustomer);

@@ -44,7 +44,7 @@ class AppNavbar extends Component {
                                 <NavLink tag={RRNavLink} exact to="/calculator" activeClassName="active_class">Calulate</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink tag={RRNavLink} exact to="/user" activeClassName="active_class">Users</NavLink>
+                                <NavLink tag={RRNavLink} exact to="/customer" activeClassName="active_class">Customers</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink tag={RRNavLink} exact to="/customer/add" activeClassName="active_class">New Customer</NavLink>

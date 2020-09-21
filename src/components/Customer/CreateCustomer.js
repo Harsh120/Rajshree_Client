@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Row, Col, Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
-import AutoComplete from './../AutoComplete';
+import AutoComplete from '../AutoComplete';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNewUser } from '../../actions/userActions';
+import { addNewCustomer } from '../../actions/customerActions';
 
-class CreateUser extends Component {
+class CreateCustomer extends Component {
     state = {
         places: [],
         place: null,
@@ -16,7 +16,7 @@ class CreateUser extends Component {
     }
 
     static propTypes = {
-        addNewUser: PropTypes.func.isRequired
+        addNewCustomer: PropTypes.func.isRequired
     }
     
     callbackFunction = (childData) => {
@@ -30,14 +30,14 @@ class CreateUser extends Component {
     onSubmit = e => {
         e.preventDefault();
 
-        const newUser = JSON.stringify({
+        const NewCustomer = JSON.stringify({
             name: this.state.name,
             father_name: this.state.father_name,
             place: this.state.place,
             phone_number: this.state.phone_number
         })
 
-        this.props.addNewUser(newUser);
+        this.props.addNewCustomer(NewCustomer);
     }
 
     componentDidMount() {
@@ -115,4 +115,4 @@ class CreateUser extends Component {
   }
 }
 
-export default connect(null, { addNewUser })(CreateUser);
+export default connect(null, { addNewCustomer })(CreateCustomer);

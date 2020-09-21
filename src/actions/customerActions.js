@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { 
-    USER_LOADED, 
-    USER_LOADING,
+    CUSTOMER_LOADED, 
+    CUSTOMER_LOADING,
     CREATE_NEW_CUSTOMER_SUCCESS,
     CREATE_NEW_CUSTOMER_FAIL,
-    EDIT_USER_SUCCESS,
-    EDIT_USER_FAIL,
-    DELETE_USER_SUCCESS,
-    DELETE_USER_FAIL
+    EDIT_CUSTOMER_SUCCESS,
+    EDIT_CUSTOMER_FAIL,
+    DELETE_CUSTOMER_SUCCESS,
+    DELETE_CUSTOMER_FAIL
 } from './types';
 import { returnErrors } from './errorActions';
 
@@ -16,10 +16,10 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 // Get all User
-export const loadAllUser = () => (dispatch) => {
+export const loadAllCustomer = () => (dispatch) => {
     // User Loading
-    dispatch({ type: USER_LOADING });
-    axios.get('/users')
+    dispatch({ type: CUSTOMER_LOADING });
+    axios.get('/customers')
     .then(res => {
         if(res.data.msg) {
             dispatch(returnErrors(res.data.msg, res.data.sucess));
@@ -27,21 +27,21 @@ export const loadAllUser = () => (dispatch) => {
         }
         else {
             dispatch({
-                type: USER_LOADED,
+                type: CUSTOMER_LOADED,
                 payload: res.data.data
             })
         }
     });
 }
 
-export const addNewUser = newUser => (dispatch) => {
+export const addNewCustomer = newCustomer => (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     }
-
-    axios.post('/user', newUser, config)
+    console.log(newCustomer);
+    axios.post('/customer', newCustomer, config)
     .then(res => {
         if(res.data.msg) {
             dispatch({
@@ -59,24 +59,24 @@ export const addNewUser = newUser => (dispatch) => {
     });
 }
 
-export const editUser = (id, updatedUser) => (dispatch) => {
+export const editCustomer = (id, updatedCustomer) => (dispatch) => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     }
 
-    axios.put('/user/edit/'+id, updatedUser, config)
+    axios.put('/customer/edit/'+id, updatedCustomer, config)
         .then(res => {
             if(res.data.msg) {
                 dispatch({
-                    type: EDIT_USER_FAIL
+                    type: EDIT_CUSTOMER_FAIL
                 })
                 toast.error(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
             }
             else {
                 dispatch({
-                    type: EDIT_USER_SUCCESS,
+                    type: EDIT_CUSTOMER_SUCCESS,
                     payload: res.data,
                     id: res.data.id
                 })
@@ -85,18 +85,18 @@ export const editUser = (id, updatedUser) => (dispatch) => {
         })
 }
 
-export const deleteUser = id => (dispatch) => {
-    axios.delete('/user/'+id)
+export const deleteCustomer = id => (dispatch) => {
+    axios.delete('/customer/'+id)
         .then(res=> {
             if(res.data.success===false) {
                 dispatch({
-                    type: DELETE_USER_FAIL
+                    type: DELETE_CUSTOMER_FAIL
                 });
                 toast.error(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
             }
             else {
                 dispatch({
-                    type: DELETE_USER_SUCCESS,
+                    type: DELETE_CUSTOMER_SUCCESS,
                     payload: id
                 })
                 toast.success(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})

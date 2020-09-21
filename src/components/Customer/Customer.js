@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import EditUser from './EditUser';
-import Confirmaton from './../Confirmation/Confirmation';
+import EditCustomer from './EditCustomer';
+import Confirmaton from '../Confirmation/Confirmation';
 import { Container, Table, Input, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
-import { loadAllUser } from '../../actions/userActions';
+import { loadAllCustomer } from '../../actions/customerActions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import Loading from '../Loading/Loading';
-import './User.css';
+import './Customer.css';
 import './Pagination.css';
 
-class User extends Component {
+class Customer extends Component {
     constructor() {
         super();
         this.state = {
@@ -42,13 +42,13 @@ class User extends Component {
     }
 
     static propTypes = {
-        loadAllUser: PropTypes.func.isRequired,
-        user: PropTypes.array.isRequired,
+        loadAllCustomer: PropTypes.func.isRequired,
+        customer: PropTypes.array.isRequired,
         isLoading: PropTypes.bool.isRequired
     }
 
     componentDidMount() {
-        this.props.loadAllUser();
+        this.props.loadAllCustomer();
     }
 
     sortBy = (e, sortKey) => {
@@ -60,16 +60,16 @@ class User extends Component {
 
     render() {
 
-        let filteredUsers = this.props.user.filter(
-            (user) => {
-                return user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-                user.father_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-                user.place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+        let filteredCustomers = this.props.customer.filter(
+            (customer) => {
+                return customer.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                customer.father_name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+                customer.place.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
             }
         );
         
         const { currentPage } = this.state;
-        let total_item = Object.keys(filteredUsers).length;
+        let total_item = Object.keys(filteredCustomers).length;
         let pagesCount = Math.ceil(total_item / this.pageSize);
 
         var startPage, endPage;
@@ -91,7 +91,7 @@ class User extends Component {
             }
         }
 
-        let SortedUsers = filteredUsers.sort((a,b) => {
+        let SortedCustomers = filteredCustomers.sort((a,b) => {
             if(this.state.key === 'place') 
             {
                 if(this.state.sort_asc) return a['place']['name'] > b['place']['name'] ? 1 : -1
@@ -127,32 +127,32 @@ class User extends Component {
                     </tr>
                 </thead> 
                 
-                { SortedUsers.slice(
+                { SortedCustomers.slice(
                         currentPage * this.pageSize,
                         (currentPage + 1) * this.pageSize
                         )
-                    .map((users, index)=> (
-                <tbody key={users.id}>
+                    .map((customer, index)=> (
+                <tbody key={customer.id}>
                     <tr>
                         <th scope="row">{index+1}</th>
-                        <td>{users.name}</td>
-                        <td>{users.father_name}</td>
-                        <td>{users.place.name}</td>
+                        <td>{customer.name}</td>
+                        <td>{customer.father_name}</td>
+                        <td>{customer.place.name}</td>
                         <td>
-                            <RRNavLink exact to={'/view/'+users.id}><FontAwesomeIcon icon={faEye} style={{color: 'green'}} /> View</RRNavLink>
+                            <RRNavLink exact to={'/view/'+customer.id}><FontAwesomeIcon icon={faEye} style={{color: 'green'}} /> View</RRNavLink>
                         </td>
                         <td>
-                            <EditUser 
-                                id={users.id} 
-                                name={users.name}
-                                father_name={users.father_name}
-                                place={users.place.name}
-                                phone_number={users.phone_number}
+                            <EditCustomer 
+                                id={customer.id} 
+                                name={customer.name}
+                                father_name={customer.father_name}
+                                place={customer.place.name}
+                                phone_number={customer.phone_number}
                             />
                         </td>
                         <td>
                             <Confirmaton
-                                id = {users.id}
+                                id = {customer.id}
                                 message = "Do you really want to delete these records?"
                             />
                         </td>
@@ -216,8 +216,8 @@ class User extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    user: state.user.user,
-    isLoading: state.user.isLoading
+    customer: state.customer.customer,
+    isLoading: state.customer.isLoading
 })
 
-export default connect(mapStateToProps, { loadAllUser })(User);
+export default connect(mapStateToProps, { loadAllCustomer })(Customer);

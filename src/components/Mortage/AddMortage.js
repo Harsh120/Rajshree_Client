@@ -38,7 +38,7 @@ class AddMortage extends Component {
 
         const newMortage = JSON.stringify({
             items: this.state.items,
-            user_id: this.props?.mortage?.id,
+            customer_id: this.props?.mortage?.id,
             amount: this.state.amount,
             weight: this.state.weight,
             status_id: this.state.status,
