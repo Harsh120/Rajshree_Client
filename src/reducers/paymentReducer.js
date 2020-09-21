@@ -4,7 +4,9 @@ import {
     PAYMENT_LOADING_ERROR,
     CREATE_NEW_PAYMENT_SUCCESS,
     CREATE_NEW_PAYMENT_FAIL,
-    CHANGE_STATUS_OF_MORTAGE
+    CHANGE_STATUS_OF_MORTAGE,
+    EDIT_MORTAGE_SUCCESS,
+    EDIT_MORTAGE_FAIL
 } from '../actions/types';
 
 const initialState = {
@@ -49,6 +51,19 @@ export default function(state = initialState, action) {
                     }
                 }
             }
+        case EDIT_MORTAGE_SUCCESS:
+            return {
+                ...state,
+                payments: {
+                    ...state.payments,
+                    items: action.payload.items,
+                    amount: action.payload.amount,
+                    weight: action.payload.weight,
+                    comment: action.payload.comment,
+                    mortage_at: action.payload.mortage_at
+                }
+            }
+        case EDIT_MORTAGE_FAIL:
         default:
             return state;
     }

@@ -13,10 +13,10 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { deleteMortage } from '../../actions/mortageActions';
-import { addNewPayment, changeStatus } from '../../actions/paymentActions';
+import { addNewPayment } from '../../actions/paymentActions';
 import PropTypes from 'prop-types';
 
-class UpdateMortage extends Component {
+class AddPayment extends Component {
     state = {
         modal: false,
         mode_of_payment: "Cash",
@@ -28,8 +28,7 @@ class UpdateMortage extends Component {
 
     static propTypes = {
         deleteMortage: PropTypes.func.isRequired,
-        addNewPayment: PropTypes.func.isRequired,
-        changeStatus: PropTypes.func.isRequired
+        addNewPayment: PropTypes.func.isRequired
     }
 
     toggle = () => {
@@ -58,12 +57,6 @@ class UpdateMortage extends Component {
         this.toggle();
     }
 
-    onChangeStatus = id => {
-        this.props.changeStatus(id);
-
-        this.toggle();
-    }
-
     onDeleteClick = id => {
         this.props.deleteMortage(id);
 
@@ -84,7 +77,7 @@ class UpdateMortage extends Component {
                  isOpen={this.state.modal}
                  toggle={this.toggle}
                  >
-                     <ModalHeader toggle={this.toggle}>Payment Detail</ModalHeader>
+                     <ModalHeader toggle={this.toggle}>Add New Payment</ModalHeader>
                      <ModalBody>
                          <Form onSubmit={this.onSubmit}>
                              <FormGroup>
@@ -153,9 +146,6 @@ class UpdateMortage extends Component {
                                     <Button color="danger" onClick={this.onDeleteClick.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
                                             Delete
                                     </Button>
-                                    <Button color="info" onClick={this.onChangeStatus.bind(this, this.props.id)} style={{float: 'right', marginTop: '2rem', marginRight: '1rem'}}>
-                                            Change
-                                    </Button>
                                     </div>
                                     </Col> 
                                     <Col>
@@ -178,4 +168,4 @@ class UpdateMortage extends Component {
     }
 }
 
-export default connect(null, { deleteMortage, addNewPayment, changeStatus })(UpdateMortage);
+export default connect(null, { deleteMortage, addNewPayment })(AddPayment);

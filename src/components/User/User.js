@@ -21,7 +21,7 @@ class User extends Component {
             sort_asc: false,
             currentPage: 0
         };
-        this.pageSize = 5;
+        this.pageSize = 10;
     }
 
     handleClick(e, index) {

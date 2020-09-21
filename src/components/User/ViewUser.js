@@ -35,7 +35,7 @@ export class ViewUser extends Component {
                 {this.props.isLoading
                 ? <Loading/>
                 :
-                <Container>
+                <Container style={{marginTop: '1rem'}}>
             <div className="card text-center">
                 <div className="card-header">
                     Customer Details
@@ -56,19 +56,19 @@ export class ViewUser extends Component {
                             <p style={{opacity: "0.6", marginBottom: "0.5px"}}>CONTACT</p>
                                 <h5>{this.props.mortage.phone_number || 'N/A'}</h5>
                         </Col>
-                    </Row>
-                   
+                    </Row>    
                 </div>
             </div>
                 <br/>
+
                 <Button color="primary" onClick={this.toggle} style={{ marginBottom: '1rem' }}>Add New Mortage</Button>
                 <Collapse isOpen={this.state.isOpen}>
                     <AddMortage toggle={this.toggle}/>
                 </Collapse>
-                <br/><br/>
+                <br/>
 
-            {this.props?.mortage?.mortages?.map(m =>    
-            <div className="card text-center" key={m.id}>
+            {this.props?.mortage?.mortages?.map(m =>  
+            <div className="card text-center" key={m.id} style={{marginTop: "1.5rem"}}>
                 <div className="card-body">
                 <p className="badge-centered-text" style={{opacity: "0.6", marginBottom: "0.5px"}}>ITEMS</p>
                     { (m.status.name === 'Cleared') 
@@ -112,9 +112,11 @@ export class ViewUser extends Component {
                             </Button>
                         </Col>
                         <Col>
+                          {/* Extra */}
                         </Col>
                     </Row>
                 </div>
+                    <div className="card-footer text-muted">{Moment(m.mortage_at, "YYYYMMDD").fromNow()}</div>
             </div>
             )}
                 </Container>

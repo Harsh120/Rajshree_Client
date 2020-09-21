@@ -5,7 +5,9 @@ import {
     MORTAGE_LOADING_ERROR, 
     CREATE_NEW_MORTAGE_SUCCESS, 
     CREATE_NEW_MORTAGE_FAIL,
-    DELETE_MORTAGE
+    DELETE_MORTAGE,
+    EDIT_MORTAGE_SUCCESS,
+    EDIT_MORTAGE_FAIL
 } from './types';
 import { returnErrors } from './errorActions';
 import { toast } from 'react-toastify';
@@ -56,6 +58,31 @@ export const addNewMortage = newMortage => (dispatch) => {
             toast.success('New Mortage Created', {position: toast.POSITION.BOTTOM_LEFT}) 
         }
     });
+}
+
+export const editMortage = (id, EditedMortage) => (dispatch) => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    axios.put('/mortage/edit/'+id, EditedMortage, config)
+        .then(res => {
+            if(res.data.msg) {
+                dispatch({
+                    type: EDIT_MORTAGE_FAIL
+                })
+                toast.error(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
+            }
+            else {
+                dispatch({
+                    type: EDIT_MORTAGE_SUCCESS,
+                    payload: res.data
+                })
+                toast.success('Mortage Edited', {position: toast.POSITION.BOTTOM_LEFT}) 
+            }
+        })
 }
 
 export const deleteMortage = id => (dispatch) => {
