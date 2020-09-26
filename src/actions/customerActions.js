@@ -7,19 +7,21 @@ import {
     EDIT_CUSTOMER_SUCCESS,
     EDIT_CUSTOMER_FAIL,
     DELETE_CUSTOMER_SUCCESS,
-    DELETE_CUSTOMER_FAIL
+    DELETE_CUSTOMER_FAIL,
+    AUTH_ERROR
 } from './types';
 import { returnErrors } from './errorActions';
+import { tokenConfig } from './authActions';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
 // Get all User
-export const loadAllCustomer = () => (dispatch) => {
+export const loadAllCustomer = () => (dispatch, getState) => {
     // User Loading
     dispatch({ type: CUSTOMER_LOADING });
-    axios.get('/customers')
+    axios.get('/customers', tokenConfig(getState))
     .then(res => {
         if(res.data.msg) {
             dispatch(returnErrors(res.data.msg, res.data.sucess));
@@ -31,17 +33,18 @@ export const loadAllCustomer = () => (dispatch) => {
                 payload: res.data.data
             })
         }
+    })
+    .catch(err => {
+        toast.error('Unauthorized Access', {position: toast.POSITION.BOTTOM_LEFT})
+        dispatch({
+            type: AUTH_ERROR
+        })
     });
 }
 
-export const addNewCustomer = newCustomer => (dispatch) => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
-    console.log(newCustomer);
-    axios.post('/customer', newCustomer, config)
+export const addNewCustomer = newCustomer => (dispatch, getState) => {
+
+    axios.post('/customer', newCustomer, tokenConfig(getState))
     .then(res => {
         if(res.data.msg) {
             dispatch({
@@ -56,17 +59,15 @@ export const addNewCustomer = newCustomer => (dispatch) => {
             })
             toast.success('New Customer Created', {position: toast.POSITION.BOTTOM_LEFT}) 
         }
+    })
+    .catch(err => {
+        toast.error('Unauthorized Access', {position: toast.POSITION.BOTTOM_LEFT})
     });
 }
 
-export const editCustomer = (id, updatedCustomer) => (dispatch) => {
-    const config = {
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }
+export const editCustomer = (id, updatedCustomer) => (dispatch, getState) => {
 
-    axios.put('/customer/edit/'+id, updatedCustomer, config)
+    axios.put('/customer/edit/'+id, updatedCustomer, tokenConfig(getState))
         .then(res => {
             if(res.data.msg) {
                 dispatch({
@@ -83,10 +84,14 @@ export const editCustomer = (id, updatedCustomer) => (dispatch) => {
                 toast.success('Customer Edited', {position: toast.POSITION.BOTTOM_LEFT}) 
             }
         })
+        .catch(err => {
+            toast.error('Unauthorized Access', {position: toast.POSITION.BOTTOM_LEFT})
+        });
 }
 
-export const deleteCustomer = id => (dispatch) => {
-    axios.delete('/customer/'+id)
+export const deleteCustomer = id => (dispatch, getState) => {
+
+    axios.delete('/customer/'+id, tokenConfig(getState))
         .then(res=> {
             if(res.data.success===false) {
                 dispatch({
@@ -102,4 +107,7 @@ export const deleteCustomer = id => (dispatch) => {
                 toast.success(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT})
             }
         })
+        .catch(err => {
+            toast.error('Unauthorized Access', {position: toast.POSITION.BOTTOM_LEFT})
+        });
 }

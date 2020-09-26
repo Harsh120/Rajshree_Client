@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
+import Logout from './Auth/Logout';
 import {
   Collapse,
   Navbar,
@@ -12,11 +13,17 @@ import {
   Container,
   Button
 } from 'reactstrap';
-import { NavLink as RRNavLink} from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { NavLink as RRNavLink } from 'react-router-dom';
 
 class AppNavbar extends Component {
     state = {
         isOpen: false
+    }
+
+    static propTypes = {
+        auth: PropTypes.object.isRequired
     }
 
     toggle = () => {
@@ -26,32 +33,55 @@ class AppNavbar extends Component {
     }
 
     render() {
+        const { isAuthenticated } = this.props.auth;
+
+        const commonLinks = (
+            <Fragment>
+                <NavItem>
+                    <NavLink tag={RRNavLink} exact to="/" activeClassName="active_class">Home</NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink tag={RRNavLink} exact to="/calculator" activeClassName="active_class">Calulate</NavLink>
+                </NavItem> 
+                <NavItem>
+                    <NavLink href="https://github.com/Harsh120">Github</NavLink>
+                </NavItem>
+            </Fragment>
+        )
+
+        const authLinks = (
+            <Fragment>
+                { commonLinks }
+                <Logout/>
+                <NavItem>
+                <span className='navbar-text mr-3'>
+                    <strong>{ localStorage.getItem('user_name') }</strong>
+                </span>
+                </NavItem>
+            </Fragment>
+        )
+
+        const guestLinks = (
+            <Fragment>
+                { commonLinks }
+                <NavItem>
+                    <NavLink tag={RRNavLink} exact to="/login" activeClassName="active_class">Login</NavLink>
+                </NavItem>
+            </Fragment>
+        )
+
         return (
             <div>
             <Navbar color="dark" dark expand="sm" style={{borderRadius: '15px'}}>
-            <Button color="info" onClick={this.props.toggleSidebar}>
+            {localStorage.getItem('token') ? <Button color="info" onClick={this.props.toggleSidebar}> 
                         <FontAwesomeIcon icon={faAlignLeft} />
-                    </Button>
+                    </Button> : '' }
                 <Container>
                     <NavbarBrand href='/'>Rajshree</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                            <NavItem>
-                              <NavLink tag={RRNavLink} exact to="/" activeClassName="active_class">Home</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={RRNavLink} exact to="/calculator" activeClassName="active_class">Calulate</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={RRNavLink} exact to="/customer" activeClassName="active_class">Customers</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink tag={RRNavLink} exact to="/customer/add" activeClassName="active_class">New Customer</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="https://github.com/Harsh120">Github</NavLink>
-                            </NavItem>
+                            { isAuthenticated ? authLinks : guestLinks }
                         </Nav>
                     </Collapse>
                 </Container>
@@ -61,4 +91,8 @@ class AppNavbar extends Component {
     }
 }
 
-export default AppNavbar;
+const mapStateToProps = state => ({
+    auth: state.auth
+  });
+  
+export default connect(mapStateToProps, null)(AppNavbar);

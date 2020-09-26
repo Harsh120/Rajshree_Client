@@ -4,7 +4,8 @@ import {
     EDIT_CUSTOMER_SUCCESS, 
     EDIT_CUSTOMER_FAIL,
     DELETE_CUSTOMER_SUCCESS,
-    DELETE_CUSTOMER_FAIL
+    DELETE_CUSTOMER_FAIL,
+    AUTH_ERROR
 } from '../actions/types';
 
 const initalState = {
@@ -14,6 +15,11 @@ const initalState = {
 
 export default function(state = initalState, action) {
     switch(action.type) {
+        case AUTH_ERROR:
+            return {
+                ...state,
+                isLoading: false
+            };
         case CUSTOMER_LOADING:
             return {
                 ...state,

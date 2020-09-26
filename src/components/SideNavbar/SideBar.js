@@ -11,33 +11,31 @@ const SideBar = ({ isOpen, toggle }) => (
       <span color="info" onClick={toggle} style={{ color: "#fff" }}>
         &times;
       </span>
-      <h3>Bootstrap Sidebar</h3>
+      <h3>Rajshree</h3>
     </div>
     <div className="side-menu">
       <Nav vertical className="list-unstyled pb-3">
-        <p>Dummy Heading</p>
+        <p>Mortage Management
+        </p>
         <SubMenu title="Home" items={submenus[0]} />
         <NavItem>
           <NavLink tag={Link} to={"/about"}>
             About
           </NavLink>
-        </NavItem>
+        {/* </NavItem>
         <SubMenu title="Pages" items={submenus[1]} />
-        <NavItem>
-          <NavLink tag={Link} to={"/pages"}>
-            
-            Portfolio
+        <NavItem> */}
+          <NavLink tag={Link} to={"/customer"}>  
+            Customers List
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={Link} to={"/faq"}>
-            
-            FAQ
+          <NavLink tag={Link} to={"/customer/add"}>
+            Add New Customer
           </NavLink>
         </NavItem>
         <NavItem>
           <NavLink tag={Link} to={"/contact"}>
-            
             Contact
           </NavLink>
         </NavItem>
