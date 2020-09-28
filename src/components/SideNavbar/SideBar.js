@@ -18,14 +18,9 @@ const SideBar = ({ isOpen, toggle }) => (
         <p>Mortage Management
         </p>
         <SubMenu title="Home" items={submenus[0]} />
+        {/* <SubMenu title="Pages" items={submenus[1]} /> */}
         <NavItem>
-          <NavLink tag={Link} to={"/about"}>
-            About
-          </NavLink>
-        {/* </NavItem>
-        <SubMenu title="Pages" items={submenus[1]} />
-        <NavItem> */}
-          <NavLink tag={Link} to={"/customer"}>  
+          <NavLink tag={Link} to={"/customers"}>  
             Customers List
           </NavLink>
         </NavItem>
@@ -34,6 +29,13 @@ const SideBar = ({ isOpen, toggle }) => (
             Add New Customer
           </NavLink>
         </NavItem>
+        
+        <NavItem>
+          <NavLink tag={Link} to={"/mortages"}>
+              Mortage List
+          </NavLink>
+        </NavItem>
+
         <NavItem>
           <NavLink tag={Link} to={"/contact"}>
             Contact

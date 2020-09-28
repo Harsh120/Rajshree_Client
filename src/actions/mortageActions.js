@@ -14,7 +14,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 
-// Get all User
+// Get all Mortages
 export const loadMortages = id => (dispatch) => {
     // User Loading
     dispatch({ type: MORTAGE_LOADING });

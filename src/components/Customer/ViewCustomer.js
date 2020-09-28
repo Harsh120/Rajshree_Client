@@ -103,11 +103,7 @@ export class ViewCustomer extends Component {
                         <Col style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                             <Button tag={RRNavLink} exact to={{pathname: '/mortage',
                                         state: {
-                                            id: m.id, 
-                                            name: this.props.mortage.name,
-                                            father_name: this.props.mortage.father_name,
-                                            place: this.props.mortage.place.name,
-                                            phone_number: this.props.mortage.phone_number
+                                            id: m.id
                                             }}} color="info">View Details
                             </Button>
                         </Col>

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
-import Logout from './Auth/Logout';
+import Logout from '../Auth/Logout';
 import {
   Collapse,
   Navbar,
@@ -16,8 +16,9 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink as RRNavLink } from 'react-router-dom';
+import './TopNavbar.css';
 
-class AppNavbar extends Component {
+class TopNavBar extends Component {
     state = {
         isOpen: false
     }
@@ -71,7 +72,7 @@ class AppNavbar extends Component {
         )
 
         return (
-            <div>
+            <div className="top-navbar">
             <Navbar color="dark" dark expand="sm" style={{borderRadius: '15px'}}>
             {localStorage.getItem('token') ? <Button color="info" onClick={this.props.toggleSidebar}> 
                         <FontAwesomeIcon icon={faAlignLeft} />
@@ -95,4 +96,4 @@ const mapStateToProps = state => ({
     auth: state.auth
   });
   
-export default connect(mapStateToProps, null)(AppNavbar);
+export default connect(mapStateToProps, null)(TopNavBar);

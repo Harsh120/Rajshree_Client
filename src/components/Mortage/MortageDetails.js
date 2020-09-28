@@ -52,21 +52,21 @@ class MortageDetails extends Component {
                             <Row>
                                 <Col>
                                     <p style={{opacity: "0.6", marginBottom: "0.5px"}}>NAME</p>
-                                    <h5 className="card-title">{this.props.location.state.name}</h5>
+                                    <h5 className="card-title">{this.props?.payments?.customer?.name}</h5>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
                                     <p style={{opacity: "0.6", marginBottom: "0.5px"}}>FATHER</p>
-                                    <h6>{this.props.location.state.father_name}</h6>
+                                    <h6>{this.props?.payments?.customer?.father_name}</h6>
                                 </Col>
                                 <Col>
                                     <p style={{opacity: "0.6", marginBottom: "0.5px"}}>PLACE</p>
-                                    <h6>{this.props.location.state.place}</h6>
+                                    <h6>{this.props?.payments?.customer?.place.name}</h6>
                                 </Col>
                                 <Col>
                                     <p style={{opacity: "0.6", marginBottom: "0.5px"}}>PHONE</p>
-                                    <h6>{this.props.location.state.phone_number || 'N/A'}</h6>
+                                    <h6>{this.props?.payments?.customer?.phone_number || 'N/A'}</h6>
                                 </Col>
                             </Row> 
                         </div>

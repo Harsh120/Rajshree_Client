@@ -10,16 +10,17 @@ import CreateCustomer from './Customer/CreateCustomer';
 import MortageDetails from './Mortage/MortageDetails';
 import Register from './Auth/Register';
 import Login from './Auth/Login';
+import AllMortages from './Mortage/AllMortages';
 
 import { PrivateRoute } from './PrivateRoute';
-import AppNavBar from './AppNavbar';
+import TopNavBar from './TopNavBar/TopNavbar';
 
 const Content = ({ sidebarIsOpen, toggleSidebar }) => (
   <Container
     fluid
     className={classNames("content", { "is-open": sidebarIsOpen })}
   >
-    <AppNavBar toggleSidebar={toggleSidebar}/>
+    <TopNavBar toggleSidebar={toggleSidebar}/>
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/register" component={Register} />
@@ -29,7 +30,8 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
       <Route exact path="/Home-1" component={() => "Home-1"} />
       <Route exact path="/Home-2" component={() => "Home-2"} />
       <Route exact path="/Home-3" component={() => "Home-3"} />
-      <PrivateRoute exact path="/customer" component={Customer} />
+      <PrivateRoute exact path="/mortages" component={AllMortages} />
+      <PrivateRoute exact path="/customers" component={Customer} />
       <PrivateRoute exact path='/view/:id' component={ViewCustomer}/>
       <PrivateRoute exact path='/customer/add' component={CreateCustomer} />
       <PrivateRoute exact path='/mortage' component={MortageDetails}/>
