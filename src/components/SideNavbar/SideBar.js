@@ -20,6 +20,11 @@ const SideBar = ({ isOpen, toggle }) => (
         <SubMenu title="Home" items={submenus[0]} />
         {/* <SubMenu title="Pages" items={submenus[1]} /> */}
         <NavItem>
+          <NavLink tag={Link} to={'/dashboard'}>
+            DashBoard
+          </NavLink>
+        </NavItem>
+        <NavItem>
           <NavLink tag={Link} to={"/customers"}>  
             Customers List
           </NavLink>

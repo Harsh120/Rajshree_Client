@@ -11,6 +11,7 @@ import MortageDetails from './Mortage/MortageDetails';
 import Register from './Auth/Register';
 import Login from './Auth/Login';
 import AllMortages from './Mortage/AllMortages';
+import DashBoard from './DashBoard/DashBoard';
 
 import { PrivateRoute } from './PrivateRoute';
 import TopNavBar from './TopNavBar/TopNavbar';
@@ -35,6 +36,7 @@ const Content = ({ sidebarIsOpen, toggleSidebar }) => (
       <PrivateRoute exact path='/view/:id' component={ViewCustomer}/>
       <PrivateRoute exact path='/customer/add' component={CreateCustomer} />
       <PrivateRoute exact path='/mortage' component={MortageDetails}/>
+      <PrivateRoute exact path='/dashboard' component={DashBoard} />
       <Redirect from="*" to="/" />
     </Switch>
   </Container>

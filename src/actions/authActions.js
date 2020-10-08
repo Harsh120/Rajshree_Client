@@ -64,7 +64,7 @@ export const login = (history, User) => (dispatch) => {
                     payload: res.data
                 })
                 toast.success(res.data.msg, {position: toast.POSITION.BOTTOM_LEFT});
-                history.push("/");
+                history.push("/dashboard");
             }
         })
 }
