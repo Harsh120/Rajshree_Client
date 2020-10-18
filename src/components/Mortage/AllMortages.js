@@ -168,8 +168,9 @@ class AllMortages extends Component {
                 </Table>
                 
             <div className="pagination-wrapper">
-          
-            <Pagination>
+            
+            { pagesCount>1 
+             ? <Pagination>
                 
                 <PaginationItem disabled={currentPage <= 0}>
                     <PaginationLink 
@@ -212,7 +213,7 @@ class AllMortages extends Component {
                 </PaginationItem>
                 
             </Pagination>
-          
+          : ''}
           </div>
 
            </Container>

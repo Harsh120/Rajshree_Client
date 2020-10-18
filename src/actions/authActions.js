@@ -69,12 +69,17 @@ export const login = (history, User) => (dispatch) => {
         })
 }
 
-export const logout = () => {
-    toast.success("Logout Success", {position: toast.POSITION.BOTTOM_LEFT})
-    return {
-        type: LOGOUT_SUCCESS
-    };
-   
+export const logout = (history) => (dispatch, getState) => {
+    axios.get('api/logout', tokenConfig(getState))
+        .then((res) => {
+            if(res.data.success === true) {
+                toast.success("Logout Success", {position: toast.POSITION.BOTTOM_LEFT})
+                dispatch({
+                    type: LOGOUT_SUCCESS
+                });
+                history.push("/");
+            }
+        });
 };
 
 // Setup config/headers and token

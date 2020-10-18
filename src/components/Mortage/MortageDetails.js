@@ -119,8 +119,8 @@ class MortageDetails extends Component {
                 </Row>
             </div>
                 <br/>
-
-                 <AddPayment id={this.props.location.state.id}/>
+                
+                <AddPayment id={this.props.location.state.id}/>
 
                 <Table striped bordered hover responsive>
                     <thead>

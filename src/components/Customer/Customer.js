@@ -120,9 +120,9 @@ class Customer extends Component {
                 <thead>
                     <tr>
                     <th>#</th>
-                    <th className={this.state.key==="name" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'name')} style={{cursor: "pointer"}}>First Name</th>
-                    <th className={this.state.key==="father_name" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'father_name')} style={{cursor: "pointer"}}>Father's Name</th>
-                    <th className={this.state.key==="place" ? (this.state.sort_asc ? "headerSortDown" : "headerSortUp") : ''} onClick={e => this.sortBy(e, 'place')} style={{cursor: "pointer"}}>Place</th>
+                    <th className={this.state.key==="name" ? (this.state.sort_asc ? "headerSortUp" : "headerSortDown") : ''} onClick={e => this.sortBy(e, 'name')} style={{cursor: "pointer"}}>First Name</th>
+                    <th className={this.state.key==="father_name" ? (this.state.sort_asc ? "headerSortUp" : "headerSortDown") : ''} onClick={e => this.sortBy(e, 'father_name')} style={{cursor: "pointer"}}>Father's Name</th>
+                    <th className={this.state.key==="place" ? (this.state.sort_asc ? "headerSortUp" : "headerSortDown") : ''} onClick={e => this.sortBy(e, 'place')} style={{cursor: "pointer"}}>Place</th>
                     <th colSpan="3">Actions</th>
                     </tr>
                 </thead> 
@@ -164,7 +164,8 @@ class Customer extends Component {
 
             <div className="pagination-wrapper">
           
-            <Pagination>
+            { pagesCount>1 
+             ? <Pagination>
                 
                 <PaginationItem disabled={currentPage <= 0}>
                     <PaginationLink 
@@ -207,7 +208,8 @@ class Customer extends Component {
                 </PaginationItem>
                 
             </Pagination>
-          
+            : '' 
+            }
           </div>
 
            </Container>
