@@ -35,7 +35,9 @@ export default class DashBoard extends Component {
                     <Col>
                       <Table striped bordered hover responsive>
                           <thead>
-                             <th colSpan='2'><u>Mortage Details</u></th>
+                             <tr>
+                               <th colSpan='2'><u>Mortage Details</u></th>
+                             </tr>
                           </thead> 
                       <tbody>
                       <tr>

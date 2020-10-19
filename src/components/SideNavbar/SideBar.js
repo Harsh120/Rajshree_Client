@@ -24,11 +24,13 @@ const SideBar = ({ isOpen, toggle }) => (
             DashBoard
           </NavLink>
         </NavItem>
+
         <NavItem>
           <NavLink tag={Link} to={"/customers"}>  
             Customers List
           </NavLink>
         </NavItem>
+
         <NavItem>
           <NavLink tag={Link} to={"/customer/add"}>
             Add New Customer
@@ -42,10 +44,17 @@ const SideBar = ({ isOpen, toggle }) => (
         </NavItem>
 
         <NavItem>
+          <NavLink tag={Link} to={"/places"}>
+              All Places
+          </NavLink>
+        </NavItem>
+
+        <NavItem>
           <NavLink tag={Link} to={"/contact"}>
             Contact
           </NavLink>
         </NavItem>
+        
       </Nav>
     </div>
   </div>
