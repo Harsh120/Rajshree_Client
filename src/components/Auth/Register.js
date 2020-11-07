@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Row, Container, Form, FormGroup, Label, Input, Button, Spinner } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { register } from '../../actions/authActions';
@@ -17,7 +17,8 @@ class Register extends Component {
     }
 
     static propTypes = {
-        register: PropTypes.func.isRequired
+        register: PropTypes.func.isRequired,
+        isLoading: PropTypes.bool.isRequired
     }
     
     onChange = e => {
@@ -91,11 +92,19 @@ class Register extends Component {
                                 onChange={this.onChange}
                             />
                     </Row>
-                    <Row>
-                        <Button color="dark" style={{marginTop: '2rem'}} block>
-                                     Register
-                        </Button>
-                        </Row>
+                    <Row> 
+                        { this.props.isLoading 
+                        ?
+                            <Button color="dark" style={{marginTop: '2rem'}} disabled block>
+                                <Spinner type="grow" size="sm" role="status"></Spinner>
+                                Loading...
+                            </Button>
+                        : 
+                            <Button color="dark" style={{marginTop: '2rem'}} block>
+                                        Register
+                            </Button>
+                        }
+                    </Row>
                         <br></br>
                         <p>Already have an Account?</p>
                             <Button color="link" tag={RRNavLink} exact to="/login">Login</Button>
@@ -107,6 +116,10 @@ class Register extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+    isLoading: state.auth.isLoading
+});
+
 const RegisterWithRouter = withRouter(Register);
 
-export default connect(null, { register })(RegisterWithRouter);
+export default connect(mapStateToProps, { register })(RegisterWithRouter);

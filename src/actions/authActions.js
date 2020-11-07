@@ -73,7 +73,7 @@ export const logout = (history) => (dispatch, getState) => {
     axios.get('api/logout', tokenConfig(getState))
         .then((res) => {
             if(res.data.success === true) {
-                toast.success("Logout Success", {position: toast.POSITION.BOTTOM_LEFT})
+                toast.error("Logout Success", {position: toast.POSITION.BOTTOM_LEFT})
                 dispatch({
                     type: LOGOUT_SUCCESS
                 });

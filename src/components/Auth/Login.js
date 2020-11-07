@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Container, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Row, Container, Form, FormGroup, Label, Input, Button, Spinner } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { login } from '../../actions/authActions';
@@ -14,7 +14,8 @@ class Login extends Component {
     }
 
     static propTypes = {
-        login: PropTypes.func.isRequired
+        login: PropTypes.func.isRequired,
+        isLoading: PropTypes.bool.isRequired
     }
     
     onChange = e => {
@@ -60,9 +61,17 @@ class Login extends Component {
                             />
                     </Row>
                     <Row>
+                        { this.props.isLoading
+                        ?
+                        <Button color="dark" style={{marginTop: '2rem'}} disabled block>
+                            <Spinner type="grow" size="sm" role="status"></Spinner>
+                            Loading...
+                        </Button>
+                        :
                         <Button color="dark" style={{marginTop: '2rem'}} block>
                                      Login
                         </Button>
+                        }
                     </Row>
                     <br></br>
                     <p>Don't have an Account?</p>
@@ -75,6 +84,10 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+    isLoading: state.auth.isLoading
+});
+
 const LoginWithRouter = withRouter(Login);
 
-export default connect(null, { login })(LoginWithRouter);
+export default connect(mapStateToProps, { login })(LoginWithRouter);
